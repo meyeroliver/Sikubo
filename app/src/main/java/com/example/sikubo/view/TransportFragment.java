@@ -28,6 +28,10 @@ public class TransportFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_transport, container, false);
 
+        /**
+         * TODO: check whether there are any memory leaks
+         */
+
         List<String> transport = new ArrayList<>();
         transport.add("Metrorail");
         transport.add("Myciti");
