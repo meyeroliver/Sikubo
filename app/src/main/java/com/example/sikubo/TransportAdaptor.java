@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,12 +42,41 @@ public class TransportAdaptor extends RecyclerView.Adapter<TransportAdaptor.Tran
         notifyDataSetChanged();
     }
 
-    class TransportHolder extends RecyclerView.ViewHolder {
+    class TransportHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView transportTitle;
+
 
         public TransportHolder(@NonNull View itemView) {
             super(itemView);
             transportTitle = itemView.findViewById(R.id.transport_card_label);
+            transportTitle.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            TextView textView =  v.findViewById(R.id.transport_card_label);
+            String transportMode = textView.getText().toString().trim();
+            switch (transportMode) {
+                case "Metrorail":
+                    /**
+                     * Todo: startup a new activity with all the routes of trains
+                     */
+                    System.out.println("Metrofail here we go again");
+                    break;
+                case "MyCiti":
+                    /**
+                     * Todo: startup a new activity with all the routes of trams
+                     */
+                    System.out.println("MyCiti for the richKids");
+                    break;
+                default:
+                    /**
+                     * Todo: startup a new activity with all the routes of busses
+                     */
+                    System.out.println("Golden Arrow you to death");
+                    break;
+            }
+
         }
     }
 }
