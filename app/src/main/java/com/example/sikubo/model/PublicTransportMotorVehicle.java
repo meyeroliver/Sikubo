@@ -8,7 +8,7 @@ public abstract class PublicTransportMotorVehicle {
     private String color;
     private String agencyName;
 
-    private PublicTransportMotorVehicle(String id, String shortName, String longName, String mode, String color, String agencyName) {
+    public PublicTransportMotorVehicle(String id, String shortName, String longName, String mode, String color, String agencyName) {
         this.id = id;
         this.shortName = shortName;
         this.longName = longName;
