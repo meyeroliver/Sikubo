@@ -1,10 +1,13 @@
 package com.example.sikubo;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.sikubo.model.Route;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,6 +65,9 @@ public class TransportAdaptor extends RecyclerView.Adapter<TransportAdaptor.Tran
                      * Todo: startup a new activity with all the routes of trains
                      */
                     System.out.println("Metrofail here we go again");
+                    Intent intent = new Intent(v.getContext(), RouteActivity.class);
+                    v.getContext().startActivity(intent);
+
                     break;
                 case "MyCiti":
                     /**
