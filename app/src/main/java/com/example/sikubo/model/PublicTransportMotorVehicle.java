@@ -1,6 +1,7 @@
 package com.example.sikubo.model;
 
 public abstract class PublicTransportMotorVehicle {
+
     private String id;
     private String shortName;
     private String longName;
@@ -39,5 +40,29 @@ public abstract class PublicTransportMotorVehicle {
 
     public String getAgencyName() {
         return agencyName;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setShortName(String shortName) {
+        this.shortName = shortName;
+    }
+
+    public void setLongName(String longName) {
+        this.longName = longName;
+    }
+
+    public void setMode(String mode) {
+        this.mode = mode;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public void setAgencyName(String agencyName) {
+        this.agencyName = agencyName;
     }
 }
