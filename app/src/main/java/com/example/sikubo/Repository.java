@@ -1,7 +1,6 @@
 package com.example.sikubo;
 
 
-
 import android.app.Application;
 import android.app.ListActivity;
 
@@ -24,8 +23,8 @@ public class Repository {
     private GoMetroApi goMetroApi;
 
 
-    public Repository(Application application) {
-
+    public Repository() {
+        goMetroApi = RetroClass.getGoMetroApi();
     }
 
     public LiveData<List<Metrorail>> getAllRailRoutes() {
@@ -34,7 +33,8 @@ public class Repository {
             @Override
             public void onResponse(Call<List<Metrorail>> call, Response<List<Metrorail>> response) {
                 if (!response.isSuccessful()) {
-                   mutableLiveData.setValue(null);
+                    System.out.println("Code: " + response.code());
+                    mutableLiveData.setValue(null);
                     return;
                 }
                 mutableLiveData.setValue(response.body());
