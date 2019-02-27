@@ -1,4 +1,4 @@
-package com.example.sikubo;
+package com.example.sikubo.api;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -9,7 +9,7 @@ public class RetroClass {
     public static Retrofit getRetroInstance() {
 
         if (retrofit == null) {
-          retrofit = new  Retrofit.Builder()
+            retrofit = new  Retrofit.Builder()
                     .baseUrl("http://proserver.gometro.co.za/api/v1/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
