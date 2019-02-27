@@ -17,10 +17,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.sikubo.R;
+import com.example.sikubo.RouteAdaptor;
+import com.example.sikubo.StopsAdaptor;
 import com.example.sikubo.model.Route;
 import com.example.sikubo.viewmodel.StopsViewModel;
 
 import java.util.List;
+
+import static com.example.sikubo.RouteAdaptor.ROUTE_STOP;
 
 public class StopsFragment extends Fragment {
 
@@ -44,10 +48,15 @@ public class StopsFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         stopsViewModel = ViewModelProviders.of(getActivity()).get(StopsViewModel.class);
+        String id = getActivity().getIntent().getStringExtra(ROUTE_STOP);
 
-        stopsViewModel.getAllStopsOnARailRoute("awe").observe(getActivity(), new Observer<List<Route>>() {
+
+        stopsViewModel.getAllStopsOnARailRoute(id).observe(getActivity(), new Observer<List<Route>>() {
             @Override
             public void onChanged(List<Route> routes) {
+                StopsAdaptor stopsAdaptor = new StopsAdaptor();
+                stopsAdaptor.setAllStopsOnARailRoute(routes);
+                recyclerView.setAdapter(stopsAdaptor);
 
             }
         });
