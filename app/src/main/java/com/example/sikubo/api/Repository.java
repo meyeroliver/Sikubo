@@ -3,6 +3,7 @@ package com.example.sikubo.api;
 import com.example.sikubo.model.GoldenArrow;
 import com.example.sikubo.model.Metrorail;
 import com.example.sikubo.model.MyCiti;
+import com.example.sikubo.model.Route;
 
 import java.util.List;
 
@@ -95,6 +96,30 @@ public class Repository {
             }
         });
 
+        return mutableLiveData;
+    }
+
+    public LiveData<List<Route>>  getAllStopsOnARailRoute(String id) {
+        final  MutableLiveData<List<Route>> mutableLiveData = new MutableLiveData<>();
+        goMetroApi.getAllStopsOnARailRoute(id).enqueue(new Callback<List<Route>>() {
+            @Override
+            public void onResponse(Call<List<Route>> call, Response<List<Route>> response) {
+                if (!response.isSuccessful()) {
+                    System.out.println("Code: " + response.code());
+                    mutableLiveData.setValue(null);
+                    return;
+                }
+                mutableLiveData.setValue(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<List<Route>> call, Throwable t) {
+                /**
+                 * TODO: show errors
+                 */
+                mutableLiveData.setValue(null);
+            }
+        });
         return mutableLiveData;
     }
 
