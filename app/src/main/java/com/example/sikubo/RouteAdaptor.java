@@ -1,5 +1,6 @@
 package com.example.sikubo;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class RouteAdaptor extends RecyclerView.Adapter<RouteAdaptor.RouteHolder> {
+
+    public static final String ROUTE_STOP = "com.example.sikubo.ROUTE_STOP";
 
     private List<Metrorail> metrorails;
     private List<MyCiti> myCitis;
@@ -82,7 +85,7 @@ public class RouteAdaptor extends RecyclerView.Adapter<RouteAdaptor.RouteHolder>
         notifyDataSetChanged();
     }
 
-    class RouteHolder extends RecyclerView.ViewHolder {
+    class RouteHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private TextView longName;
         private TextView agencyName;
 
@@ -90,6 +93,17 @@ public class RouteAdaptor extends RecyclerView.Adapter<RouteAdaptor.RouteHolder>
             super(itemView);
             this.longName = itemView.findViewById(R.id.route_title);
             this.agencyName = itemView.findViewById(R.id.route_agency_text);
+            this.longName.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            TextView textView =  view.findViewById(R.id.route_title);
+            String stopName = textView.getText().toString().trim();
+
+            Intent intent = new Intent(view.getContext(), StopsActivity.class);
+            intent.putExtra(ROUTE_STOP, stopName);
+            view.getContext().startActivity(intent);
         }
     }
 }
