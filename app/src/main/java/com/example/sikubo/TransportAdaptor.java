@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class TransportAdaptor extends RecyclerView.Adapter<TransportAdaptor.TransportHolder> {
 
+    public static final String MODE_OF_TRANSPORT = "com.example.sikubo.TRANSPORT";
+
     private List<String> transport = new ArrayList<>();
 
     @NonNull
@@ -53,30 +55,23 @@ public class TransportAdaptor extends RecyclerView.Adapter<TransportAdaptor.Tran
         }
 
         @Override
-        public void onClick(View v) {
-            TextView textView =  v.findViewById(R.id.transport_card_label);
+        public void onClick(View view) {
+            TextView textView =  view.findViewById(R.id.transport_card_label);
             String transportMode = textView.getText().toString().trim();
+            Intent intent = new Intent(view.getContext(), RouteActivity.class);
             switch (transportMode) {
                 case "Metrorail":
-                    /**
-                     * Todo: startup a new activity with all the routes of trains
-                     */
-                    System.out.println("Metrofail here we go again");
-                    Intent intent = new Intent(v.getContext(), RouteActivity.class);
-                    v.getContext().startActivity(intent);
+                    intent.putExtra(MODE_OF_TRANSPORT, "Metrorail");
+                    view.getContext().startActivity(intent);
 
                     break;
                 case "MyCiti":
-                    /**
-                     * Todo: startup a new activity with all the routes of trams
-                     */
-                    System.out.println("MyCiti for the richKids");
+                    intent.putExtra(MODE_OF_TRANSPORT, "MyCiti");
+                    view.getContext().startActivity(intent);
                     break;
                 default:
-                    /**
-                     * Todo: startup a new activity with all the routes of busses
-                     */
-                    System.out.println("Golden Arrow you to death");
+                    intent.putExtra(MODE_OF_TRANSPORT, "Golden Arrow");
+                    view.getContext().startActivity(intent);
                     break;
             }
 
