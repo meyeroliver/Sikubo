@@ -1,11 +1,14 @@
 package com.example.sikubo;
 
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.sikubo.model.GoldenArrow;
 import com.example.sikubo.model.Metrorail;
+import com.example.sikubo.model.MyCiti;
 
 import java.util.List;
 
@@ -15,6 +18,8 @@ import androidx.recyclerview.widget.RecyclerView;
 public class RouteAdaptor extends RecyclerView.Adapter<RouteAdaptor.RouteHolder> {
 
     private List<Metrorail> metrorails;
+    private List<MyCiti> myCitis;
+    private List<GoldenArrow> goldenArrows;
 
     @NonNull
     @Override
@@ -27,18 +32,53 @@ public class RouteAdaptor extends RecyclerView.Adapter<RouteAdaptor.RouteHolder>
 
     @Override
     public void onBindViewHolder(@NonNull RouteHolder holder, int position) {
-        Metrorail metrorail = metrorails.get(position);
-        holder.agencyName.setText(metrorail.getAgencyName());
-        holder.longName.setText(metrorail.getLongName());
+
+        if (metrorails != null) {
+            Metrorail metrorail = metrorails.get(position);
+            holder.agencyName.setText(metrorail.getAgencyName());
+            holder.longName.setText(metrorail.getLongName());
+
+        } else if (myCitis != null) {
+            MyCiti myCiti = myCitis.get(position);
+            holder.agencyName.setText(myCiti.getAgencyName());
+            holder.longName.setText(myCiti.getLongName());
+        }
+        else if (goldenArrows != null) {
+            GoldenArrow goldenArrow = goldenArrows.get(position);
+            holder.agencyName.setText(goldenArrow.getAgencyName());
+            holder.longName.setText(goldenArrow.getLongName());
+
+        }
     }
 
     @Override
     public int getItemCount() {
-        return metrorails.size();
+        int size = 0;
+
+        if (metrorails != null) {
+            size = metrorails.size();
+        } else if (myCitis != null) {
+            size = myCitis.size();
+        }
+        else if (goldenArrows != null) {
+            size = goldenArrows.size();
+        }
+
+        return size;
     }
 
     public void setMetrorails(List<Metrorail> metrorails) {
         this.metrorails = metrorails;
+        notifyDataSetChanged();
+    }
+
+    public void setMyCitis(List<MyCiti> myCitis) {
+        this.myCitis = myCitis;
+        notifyDataSetChanged();
+    }
+
+    public void setGoldenArrows(List<GoldenArrow> goldenArrows) {
+        this.goldenArrows = goldenArrows;
         notifyDataSetChanged();
     }
 
