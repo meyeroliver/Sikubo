@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.sikubo.view.RouteFragment;
-import com.example.sikubo.view.TransportFragment;
 
 public class RouteActivity extends AppCompatActivity {
 
