@@ -17,9 +17,9 @@ public interface GoMetroApi {
     /**
      * MetroRail routes
      */
-    @GET("/rail/routes")
+    @GET("rail/routes")
     Call<List<Metrorail>> getAllRailRoutes();
-    @GET("/rail/routes/{id}/stops")
+    @GET("rail/routes/{id}/stops")
     Call<List<Route>> getAllStopsOnARailRoute(@Path("id") String id);
     @GET("rail/stop/{id}")
     Call<Stop> getRailStopInfo(@Path("id") String id);
@@ -29,21 +29,21 @@ public interface GoMetroApi {
     /**
      * MyCiti routes
      */
-    @GET("/myciti/routes/")
+    @GET("myciti/routes/")
     Call<List<MyCiti>> getAllTramRoutes();
-    @GET("/myciti/routes/{id}/stops")
+    @GET("myciti/routes/{id}/stops")
     Call<List<Route>> getAllStopsOnATramRoute(@Path("id") String id);
-    @GET("/myciti/stop/{id}")
+    @GET("myciti/stop/{id}")
     Call<Stop> getTramStopInfo(@Path("id") String id);
 
     /**
      * Golden Arrow routes
      */
-    @GET("/ga/routes")
+    @GET("ga/routes")
     Call<List<GoldenArrow>> getAllBusRoutes();
-    @GET("/ga/routes/{id}/stops")
+    @GET("ga/routes/{id}/stops")
     Call<List<Route>> getAllStopsOnABusRoute(@Path("id") String id);
-    @GET("/ga/stop/{id}")
+    @GET("ga/stop/{id}")
     Call<List<Stop>> getBusStopInfo(@Path("id") String id);
 
 }
