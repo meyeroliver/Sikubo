@@ -34,7 +34,7 @@ public class TransportFragment extends Fragment {
 
         List<String> transport = new ArrayList<>();
         transport.add("Metrorail");
-        transport.add("Myciti");
+        transport.add("MyCiti");
         transport.add("Golden Arrow");
 
         RecyclerView recyclerView = view.findViewById(R.id.transport_list_view);
