@@ -5,12 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.sikubo.GoMetroApi;
 import com.example.sikubo.R;
-import com.example.sikubo.RetroClass;
 import com.example.sikubo.RouteAdaptor;
-import com.example.sikubo.TransportAdaptor;
+import com.example.sikubo.model.GoldenArrow;
 import com.example.sikubo.model.Metrorail;
+import com.example.sikubo.model.MyCiti;
 import com.example.sikubo.viewmodel.RouteViewModel;
 
 import java.util.List;
@@ -23,11 +22,6 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RouteFragment extends Fragment {
 
@@ -51,17 +45,38 @@ public class RouteFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         routeViewModel = ViewModelProviders.of(getActivity()).get(RouteViewModel.class);
-        routeViewModel.init();
+        String transport = getActivity().getIntent().getStringExtra("com.example.sikubo.TRANSPORT");
 
-        routeViewModel.getAllRailRoutes().observe(getActivity(), new Observer<List<Metrorail>>() {
-            @Override
-            public void onChanged(List<Metrorail> metrorails) {
-
-                RouteAdaptor routeAdaptor = new RouteAdaptor();
-                routeAdaptor.setMetrorails(metrorails);
-                recyclerView.setAdapter(routeAdaptor);
-            }
-        });
-
+        switch (transport) {
+            case "Metrorail":
+                routeViewModel.getAllRailRoutes().observe(getActivity(), new Observer<List<Metrorail>>() {
+                    @Override
+                    public void onChanged(List<Metrorail> metrorails) {
+                        RouteAdaptor routeAdaptor = new RouteAdaptor();
+                        routeAdaptor.setMetrorails(metrorails);
+                        recyclerView.setAdapter(routeAdaptor);
+                    }
+                });
+                break;
+            case "MyCiti":
+                routeViewModel.getAllTramRoutes().observe(getActivity(), new Observer<List<MyCiti>>() {
+                    @Override
+                    public void onChanged(List<MyCiti> myCitis) {
+                        RouteAdaptor routeAdaptor = new RouteAdaptor();
+                        routeAdaptor.setMyCitis(myCitis);
+                        recyclerView.setAdapter(routeAdaptor);
+                    }
+                });
+                break;
+            default:
+                routeViewModel.getAllBusRoutes().observe(getActivity(), new Observer<List<GoldenArrow>>() {
+                    @Override
+                    public void onChanged(List<GoldenArrow> goldenArrows) {
+                        RouteAdaptor routeAdaptor = new RouteAdaptor();
+                        routeAdaptor.setGoldenArrows(goldenArrows);
+                        recyclerView.setAdapter(routeAdaptor);
+                    }
+                });
+        }
     }
 }
