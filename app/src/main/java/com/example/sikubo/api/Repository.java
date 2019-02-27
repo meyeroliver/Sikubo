@@ -1,8 +1,4 @@
-package com.example.sikubo;
-
-
-import android.app.Application;
-import android.app.ListActivity;
+package com.example.sikubo.api;
 
 import com.example.sikubo.model.GoldenArrow;
 import com.example.sikubo.model.Metrorail;
@@ -18,10 +14,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-
 @Singleton
 public class Repository {
-
     private GoMetroApi goMetroApi;
 
 
@@ -103,8 +97,5 @@ public class Repository {
 
         return mutableLiveData;
     }
-
-
-
 
 }
