@@ -37,6 +37,11 @@ public class StopsAdaptor extends RecyclerView.Adapter<StopsAdaptor.StopsHolder>
         return allStopsOnARailRoute.size();
     }
 
+    public void setAllStopsOnARailRoute(List<Route> allStopsOnARailRoute) {
+        this.allStopsOnARailRoute = allStopsOnARailRoute;
+        notifyDataSetChanged();
+    }
+
     class StopsHolder extends RecyclerView.ViewHolder {
         private TextView stopName;
 
