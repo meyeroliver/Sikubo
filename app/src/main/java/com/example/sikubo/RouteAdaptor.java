@@ -100,10 +100,21 @@ public class RouteAdaptor extends RecyclerView.Adapter<RouteAdaptor.RouteHolder>
         public void onClick(View view) {
             TextView textView =  view.findViewById(R.id.route_title);
             String stopName = textView.getText().toString().trim();
+            String id = "";
+            /**
+             * convert list into hashmap
+             */
+            for (Metrorail metrorail: metrorails) {
+                if (stopName.equals(metrorail.getLongName())) {
+                    id = metrorail.getId();
+                    break;
+                }
+            }
 
             Intent intent = new Intent(view.getContext(), StopsActivity.class);
-            intent.putExtra(ROUTE_STOP, stopName);
+            intent.putExtra(ROUTE_STOP, id);
             view.getContext().startActivity(intent);
+            System.out.println(stopName);
         }
     }
 }
