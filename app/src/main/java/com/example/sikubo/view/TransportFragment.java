@@ -21,8 +21,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class TransportFragment extends Fragment {
 
-    private TextView textView;
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -41,6 +39,9 @@ public class TransportFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
         recyclerView.setHasFixedSize(true);
 
+        /**
+         * TODO: check whether there are any memory leaks
+         */
         TransportAdaptor transportAdaptor = new TransportAdaptor();
         transportAdaptor.setTransport(transport);
         recyclerView.setAdapter(transportAdaptor);
