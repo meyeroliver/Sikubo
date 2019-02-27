@@ -1,4 +1,4 @@
-package com.example.sikubo;
+package com.example.sikubo.api;
 
 import com.example.sikubo.model.GoldenArrow;
 import com.example.sikubo.model.Metrorail;
@@ -8,7 +8,15 @@ import com.example.sikubo.model.Stop;
 
 import java.util.List;
 
+import javax.inject.Singleton;
+
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 
@@ -45,5 +53,6 @@ public interface GoMetroApi {
     Call<List<Route>> getAllStopsOnABusRoute(@Path("id") String id);
     @GET("ga/stop/{id}")
     Call<List<Stop>> getBusStopInfo(@Path("id") String id);
+
 
 }
