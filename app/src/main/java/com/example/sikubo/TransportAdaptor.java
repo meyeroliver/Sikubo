@@ -56,25 +56,12 @@ public class TransportAdaptor extends RecyclerView.Adapter<TransportAdaptor.Tran
 
         @Override
         public void onClick(View view) {
-            TextView textView =  view.findViewById(R.id.transport_card_label);
+            TextView textView = view.findViewById(R.id.transport_card_label);
             String transportMode = textView.getText().toString().trim();
+
             Intent intent = new Intent(view.getContext(), RouteActivity.class);
-            switch (transportMode) {
-                case "Metrorail":
-                    intent.putExtra(MODE_OF_TRANSPORT, "Metrorail");
-                    view.getContext().startActivity(intent);
-
-                    break;
-                case "MyCiti":
-                    intent.putExtra(MODE_OF_TRANSPORT, "MyCiti");
-                    view.getContext().startActivity(intent);
-                    break;
-                default:
-                    intent.putExtra(MODE_OF_TRANSPORT, "Golden Arrow");
-                    view.getContext().startActivity(intent);
-                    break;
-            }
-
+            intent.putExtra(MODE_OF_TRANSPORT, transportMode);
+            view.getContext().startActivity(intent);
         }
     }
 }
