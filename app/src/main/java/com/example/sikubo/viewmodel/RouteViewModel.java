@@ -2,10 +2,11 @@ package com.example.sikubo.viewmodel;
 
 import android.app.Application;
 
-import com.example.sikubo.Repository;
+import com.example.sikubo.api.GoMetroApi;
 import com.example.sikubo.model.GoldenArrow;
 import com.example.sikubo.model.Metrorail;
 import com.example.sikubo.model.MyCiti;
+import com.example.sikubo.api.Repository;
 
 import java.util.List;
 
