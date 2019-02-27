@@ -5,9 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.example.sikubo.model.Route;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,8 +48,8 @@ public class TransportAdaptor extends RecyclerView.Adapter<TransportAdaptor.Tran
 
         public TransportHolder(@NonNull View itemView) {
             super(itemView);
-            transportTitle = itemView.findViewById(R.id.transport_card_label);
-            transportTitle.setOnClickListener(this);
+            this.transportTitle = itemView.findViewById(R.id.transport_card_label);
+            this.transportTitle.setOnClickListener(this);
         }
 
         @Override
