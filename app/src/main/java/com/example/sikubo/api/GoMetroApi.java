@@ -1,6 +1,7 @@
 package com.example.sikubo.api;
 
 import com.example.sikubo.model.GoldenArrow;
+import com.example.sikubo.model.LineUpdates;
 import com.example.sikubo.model.Metrorail;
 import com.example.sikubo.model.MyCiti;
 import com.example.sikubo.model.Route;
@@ -32,7 +33,7 @@ public interface GoMetroApi {
     @GET("rail/stop/{id}")
     Call<Stop> getRailStopInfo(@Path("id") String id);
     @GET("rail/lineupdates/{id}")
-    Call<Stop> getRailLineUpdats(@Path("id") String id);
+    Call<LineUpdates> getRailLineUpdats(@Path("id") String id);
 
     /**
      * MyCiti routes
