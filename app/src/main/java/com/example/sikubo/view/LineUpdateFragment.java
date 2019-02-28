@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.sikubo.LinesUpdatesAdaptor;
 import com.example.sikubo.R;
 import com.example.sikubo.model.LineUpdates;
 import com.example.sikubo.viewmodel.LineUpdatesViewModel;
@@ -30,7 +31,6 @@ public class LineUpdateFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -51,10 +51,19 @@ public class LineUpdateFragment extends Fragment {
         /**
          * TODO getStringExtra that carries the stop id
          */
-        lineUpdatesViewModel.getRailLineUpdates("13:f12").observe(getActivity(), new Observer<LineUpdates>() {
+        lineUpdatesViewModel.getRailLineUpdates("awe").observe(getActivity(), new Observer<LineUpdates>() {
             @Override
             public void onChanged(LineUpdates lineUpdates) {
+                /**
+                 * This depends on whether there is an anouncement for that day
+                 */
+                /*LinesUpdatesAdaptor linesUpdatesAdaptor = new LinesUpdatesAdaptor();
+                linesUpdatesAdaptor.setLineUpdates(lineUpdates);
+                recyclerView.setAdapter(linesUpdatesAdaptor);*/
 
+                if (lineUpdates == null) {
+                    System.out.println("another null");
+                }
             }
         });
 
