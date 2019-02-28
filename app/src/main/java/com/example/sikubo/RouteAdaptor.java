@@ -114,7 +114,7 @@ public class RouteAdaptor extends RecyclerView.Adapter<RouteAdaptor.RouteHolder>
             Intent intent = new Intent(view.getContext(), StopsActivity.class);
             intent.putExtra(ROUTE_STOP, id);
             view.getContext().startActivity(intent);
-            System.out.println(stopName);
+
         }
     }
 }
