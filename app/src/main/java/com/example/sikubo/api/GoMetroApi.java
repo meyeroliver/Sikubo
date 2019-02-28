@@ -33,7 +33,7 @@ public interface GoMetroApi {
     @GET("rail/stop/{id}")
     Call<Stop> getRailStopInfo(@Path("id") String id);
     @GET("rail/lineupdates/{id}")
-    Call<LineUpdates> getRailLineUpdats(@Path("id") String id);
+    Call<LineUpdates> getRailLineUpdates(@Path("id") String id);
 
     /**
      * MyCiti routes
