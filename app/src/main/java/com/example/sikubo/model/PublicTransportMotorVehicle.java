@@ -1,7 +1,12 @@
 package com.example.sikubo.model;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "public_transport_table")
 public abstract class PublicTransportMotorVehicle {
 
+    @PrimaryKey
     private String id;
     private String shortName;
     private String longName;
