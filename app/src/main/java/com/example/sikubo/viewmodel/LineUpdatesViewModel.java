@@ -19,7 +19,7 @@ public class LineUpdatesViewModel extends AndroidViewModel {
         this.repository = new Repository();
     }
 
-    public LiveData<LineUpdates> getRailLineUpdats(String id) {
+    public LiveData<LineUpdates> getRailLineUpdates(String id) {
 
         /**
          * TODO: I believe the configuration error is right here
@@ -27,7 +27,7 @@ public class LineUpdatesViewModel extends AndroidViewModel {
         if (this.railLineUpdates != null) {
             return null;
         }
-        this.railLineUpdates = repository.getRailLineUpdats(id);
+        this.railLineUpdates = repository.getRailLineUpdates();
         return this.railLineUpdates;
     }
 }
