@@ -1,6 +1,7 @@
 package com.example.sikubo.api;
 
 import com.example.sikubo.model.GoldenArrow;
+import com.example.sikubo.model.LineUpdates;
 import com.example.sikubo.model.Metrorail;
 import com.example.sikubo.model.MyCiti;
 import com.example.sikubo.model.Route;
@@ -99,6 +100,9 @@ public class Repository {
         return mutableLiveData;
     }
 
+    /**
+     * TODO: checkout coffee method
+     * */
     public LiveData<List<Route>>  getAllStopsOnARailRoute(String id) {
         final  MutableLiveData<List<Route>> mutableLiveData = new MutableLiveData<>();
         goMetroApi.getAllStopsOnARailRoute(id).enqueue(new Callback<List<Route>>() {
@@ -114,6 +118,30 @@ public class Repository {
 
             @Override
             public void onFailure(Call<List<Route>> call, Throwable t) {
+                /**
+                 * TODO: show errors
+                 */
+                mutableLiveData.setValue(null);
+            }
+        });
+        return mutableLiveData;
+    }
+
+    public MutableLiveData<LineUpdates> getRailLineUpdats(String id) {
+        final MutableLiveData<LineUpdates> mutableLiveData = new MutableLiveData<>();
+        goMetroApi.getRailLineUpdats(id).enqueue(new Callback<LineUpdates>() {
+            @Override
+            public void onResponse(Call<LineUpdates> call, Response<LineUpdates> response) {
+                if (!response.isSuccessful()) {
+                    System.out.println("Code: " + response.code());
+                    mutableLiveData.setValue(null);
+                    return;
+                }
+                mutableLiveData.setValue(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<LineUpdates> call, Throwable t) {
                 /**
                  * TODO: show errors
                  */
