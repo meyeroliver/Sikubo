@@ -27,7 +27,7 @@ public class LineUpdatesViewModel extends AndroidViewModel {
         if (this.railLineUpdates != null) {
             return null;
         }
-        this.railLineUpdates = repository.getRailLineUpdates();
+        this.railLineUpdates = repository.getRailLineUpdates(id);
         return this.railLineUpdates;
     }
 }
