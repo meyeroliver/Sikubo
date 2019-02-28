@@ -129,11 +129,12 @@ public class Repository {
 
     public MutableLiveData<LineUpdates> getRailLineUpdates(String id) {
         final MutableLiveData<LineUpdates> mutableLiveData = new MutableLiveData<>();
-        goMetroApi.getRailLineUpdates(id).enqueue(new Callback<LineUpdates>() {
+        goMetroApi.getRailLineUpdates("13:f12").enqueue(new Callback<LineUpdates>() {
             @Override
             public void onResponse(Call<LineUpdates> call, Response<LineUpdates> response) {
                 if (!response.isSuccessful()) {
                     System.out.println("Code: " + response.code());
+                    System.out.println("nulified");
                     mutableLiveData.setValue(null);
                     return;
                 }
