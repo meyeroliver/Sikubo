@@ -129,7 +129,7 @@ public class Repository {
 
     public MutableLiveData<LineUpdates> getRailLineUpdats(String id) {
         final MutableLiveData<LineUpdates> mutableLiveData = new MutableLiveData<>();
-        goMetroApi.getRailLineUpdats(id).enqueue(new Callback<LineUpdates>() {
+        goMetroApi.getRailLineUpdates(id).enqueue(new Callback<LineUpdates>() {
             @Override
             public void onResponse(Call<LineUpdates> call, Response<LineUpdates> response) {
                 if (!response.isSuccessful()) {
