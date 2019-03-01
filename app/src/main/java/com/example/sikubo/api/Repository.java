@@ -19,23 +19,24 @@ import retrofit2.Response;
 @Singleton
 public class Repository {
     private GoMetroApi goMetroApi;
-
+    final MutableLiveData<List<Metrorail>> mutableLiveData = new MutableLiveData<>();
 
     public Repository() {
         goMetroApi = RetroClass.getGoMetroApi();
     }
 
     public LiveData<List<Metrorail>> getAllRailRoutes() {
-        final MutableLiveData<List<Metrorail>> mutableLiveData = new MutableLiveData<>();
+
         goMetroApi.getAllRailRoutes().enqueue(new Callback<List<Metrorail>>() {
             @Override
             public void onResponse(Call<List<Metrorail>> call, Response<List<Metrorail>> response) {
-                if (!response.isSuccessful()) {
+               /* if (!response.isSuccessful()) {
                     System.out.println("Code: " + response.code());
                     mutableLiveData.setValue(null);
                     return;
-                }
-                mutableLiveData.setValue(response.body());
+                }*/
+
+                mutableLiveData.postValue(response.body());
             }
 
             @Override

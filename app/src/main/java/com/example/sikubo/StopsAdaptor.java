@@ -1,6 +1,7 @@
 package com.example.sikubo;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,20 +59,32 @@ public class StopsAdaptor extends RecyclerView.Adapter<StopsAdaptor.StopsHolder>
             TextView textView = view.findViewById(R.id.stop_title);
             String stopName = textView.getText().toString().trim();
 
-            String id = "";
+            double latitude = 0;
+            double longitude = 0;
+
             /**
              * convert list into hashmap
              */
             for (Route route : allStopsOnARailRoute) {
                 if (stopName.equals(route.getName())) {
-                    id = route.getId();
+                    longitude = route.getLon();
+                    latitude = route.getLat();
                     break;
                 }
             }
 
-            Intent intent = new Intent(view.getContext(), LineUpdatesActivity.class);
+            /*Intent intent = new Intent(view.getContext(), LineUpdatesActivity.class);
             intent.putExtra(LINE_UPDATES, id);
-            view.getContext().startActivity(intent);
+            view.getContext().startActivity(intent);*/
+            Uri gmmIntentUri = Uri.parse("geo:"+latitude+","+longitude+"");
+            Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+            mapIntent.setPackage("com.google.android.apps.maps");
+            if (mapIntent.resolveActivity(view.getContext().getPackageManager()) != null) {
+
+                // Attempt to start an activity that can handle the Intent
+                view.getContext().startActivity(mapIntent);;
+            }
+
         }
     }
 }

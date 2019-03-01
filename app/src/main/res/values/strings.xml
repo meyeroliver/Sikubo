@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Sikubo</string>
+    <string name="metrorail_label">Metro Rail</string>
+    <string name="myciti_label">MyCiti</string>
+    <string name="golden_arrow_label">Golden Arrow</string>
+    <string name="transport_label">Transport</string>
+    <string name="sign_in_with_google_button">Sign In With Google</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
