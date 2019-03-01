@@ -1,12 +1,14 @@
 package com.example.sikubo.model;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "public_transport_table")
-public abstract class PublicTransportMotorVehicle {
+public class PublicTransportMotorVehicle {
 
     @PrimaryKey
+    @NonNull
     private String id;
     private String shortName;
     private String longName;
