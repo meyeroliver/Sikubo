@@ -27,10 +27,10 @@ public class RouteAdaptor extends RecyclerView.Adapter<RouteAdaptor.RouteHolder>
     @NonNull
     @Override
     public RouteHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-       View itemView = LayoutInflater.from(parent.getContext())
-               .inflate(R.layout.fragment_route, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.fragment_route, parent, false);
 
-       return new RouteHolder(itemView);
+        return new RouteHolder(itemView);
     }
 
     @Override
@@ -45,8 +45,7 @@ public class RouteAdaptor extends RecyclerView.Adapter<RouteAdaptor.RouteHolder>
             MyCiti myCiti = myCitis.get(position);
             holder.agencyName.setText(myCiti.getAgencyName());
             holder.longName.setText(myCiti.getLongName());
-        }
-        else if (goldenArrows != null) {
+        } else if (goldenArrows != null) {
             GoldenArrow goldenArrow = goldenArrows.get(position);
             holder.agencyName.setText(goldenArrow.getAgencyName());
             holder.longName.setText(goldenArrow.getLongName());
@@ -62,8 +61,7 @@ public class RouteAdaptor extends RecyclerView.Adapter<RouteAdaptor.RouteHolder>
             size = metrorails.size();
         } else if (myCitis != null) {
             size = myCitis.size();
-        }
-        else if (goldenArrows != null) {
+        } else if (goldenArrows != null) {
             size = goldenArrows.size();
         }
 
@@ -85,7 +83,7 @@ public class RouteAdaptor extends RecyclerView.Adapter<RouteAdaptor.RouteHolder>
         notifyDataSetChanged();
     }
 
-    class RouteHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    class RouteHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView longName;
         private TextView agencyName;
 
@@ -98,16 +96,36 @@ public class RouteAdaptor extends RecyclerView.Adapter<RouteAdaptor.RouteHolder>
 
         @Override
         public void onClick(View view) {
-            TextView textView =  view.findViewById(R.id.route_title);
+            TextView textView = view.findViewById(R.id.route_title);
             String stopName = textView.getText().toString().trim();
             String id = "";
             /**
              * convert list into hashmap
              */
-            for (Metrorail metrorail: metrorails) {
-                if (stopName.equals(metrorail.getLongName())) {
-                    id = metrorail.getId();
-                    break;
+            if (metrorails != null) {
+                for (Metrorail metrorail : metrorails) {
+                    if (stopName.equals(metrorail.getLongName())) {
+                        id = metrorail.getId();
+                        break;
+                    }
+                }
+            }
+
+            if (myCitis != null) {
+                for (MyCiti myCiti : myCitis) {
+                    if (stopName.equals(myCiti.getLongName())) {
+                        id = myCiti.getId();
+                        break;
+                    }
+                }
+            }
+
+            if (goldenArrows != null) {
+                for (GoldenArrow goldenArrow : goldenArrows) {
+                    if (stopName.equals(goldenArrow.getLongName())) {
+                        id = goldenArrow.getId();
+                        break;
+                    }
                 }
             }
 
